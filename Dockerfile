@@ -29,12 +29,10 @@ RUN pnpm install
 COPY . .
 
 # Build the project
-RUN pnpm run build
+# RUN pnpm run build
 
-# Copy and setup the startup script
-COPY start.sh /app/start.sh
-RUN chmod +x /app/start.sh
+# Override the default entrypoint
+ENTRYPOINT ["/bin/sh", "-c"]
 
-# Override the Ollama entrypoint to use our script
-ENTRYPOINT []
-CMD ["/app/start.sh"]
+# Start Ollama service and pull the model, then run the app
+CMD ["ollama serve & sleep 5 && ollama pull ${MODEL_NAME_AT_ENDPOINT} && pnpm run dev"]
