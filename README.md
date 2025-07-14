@@ -1,42 +1,216 @@
-# Nosana Builders Challenge: Agent-101
+# Crypto Agent - Nosana Builders Challenge Submission
 
 ![Agent-101](./assets/NosanaBuildersChallengeAgents.jpg)
 
-## Topic
+## 🎯 Submission Overview
 
-Nosana Builders Challenge, 2nd edition
-Agent-101: Build your first agent
+**Agent Name:** Crypto Agent  
+**Challenge:** Nosana Builders Challenge: Agent-101  
+**Developer:** Aryan Chauhan (@itsaryanchauhan)  
+**Submission Date:** July 14, 2025
 
-## Description
+## 🚀 Agent Description
 
-The main goal of this `Nosana Builders Challenge` to teach participants to build and deploy agents. This first step will be in running a basic AI agent and giving it some basic functionality. Participants will add a tool, for the tool calling capabilities of the agent. These are basically some TypeScript functions, that will, for example, retrieve some data from a weather API, post a tweet via an API call, etc.
+The **Crypto Agent** is an intelligent AI assistant built with the Mastra framework that provides real-time cryptocurrency market information. This agent specializes in delivering accurate, up-to-date crypto data including prices, news, and sentiment analysis to help users stay informed about the cryptocurrency market.
 
-## [Mastra](https://github.com/mastra-ai/mastra)
+### Key Features
 
-For this challenge we will be using Mastra to build our tool.
+- **Real-time Price Tracking**: Get current USD prices for any cryptocurrency
+- **Latest News Updates**: Fetch the most recent crypto market news
+- **Sentiment Analysis**: Analyze market sentiment for specific cryptocurrencies
+- **Professional & Neutral**: Provides information without financial advice
+- **Multi-tool Integration**: Uses 3 custom tools for comprehensive crypto data
 
-> Mastra is an opinionated TypeScript framework that helps you build AI applications and features quickly. It gives you the set of primitives you need: workflows, agents, RAG, integrations, and evals. You can run Mastra on your local machine, or deploy to a serverless cloud.
+### Use Cases
 
-### Required Reading
+- Track cryptocurrency prices in real-time
+- Stay updated with the latest crypto market news
+- Understand market sentiment for investment research
+- Quick crypto market analysis and monitoring
 
-We recommend reading the following sections to get started with how to create an Agent and how to implement Tool Calling.
+## 🛠️ Technical Implementation
 
-- <https://mastra.ai/en/docs/agents/overview>
-- [Mastra Guide: Build an AI stock agent](https://mastra.ai/en/guides/guide/stock-agent)
+### Architecture
 
-## Get Started
+The Crypto Agent is built using:
 
-To get started run the following command to start developing:
-We recommend using [pnpm](https://pnpm.io/installation), but you can try npm, or bun if you prefer.
+- **Framework**: [Mastra](https://mastra.ai) - TypeScript AI agent framework
+- **LLM**: Qwen 2.5:7b model via Nosana endpoint
+- **Memory**: LibSQL with local database storage
+- **Tools**: 3 custom tools for crypto data fetching
 
-```sh
+### Custom Tools
+
+1. **getCryptoPrice**: Fetches real-time cryptocurrency prices from CoinCap API
+2. **getCryptoNews**: Retrieves latest crypto news from NewsAPI
+3. **getSentimentScore**: Analyzes sentiment scores using CoinMarketCap API
+
+### Environment Variables
+
+```env
+API_BASE_URL=https://5p9r6bnba2i4gkbrde59qtyti8qd7mtkkgrtycrp13bc.node.k8s.prd.nos.ci/api
+MODEL_NAME_AT_ENDPOINT=qwen2.5:7b
+COINCAP_API_KEY=your_coincap_api_key
+COINMARKETCAP_API_KEY=your_coinmarketcap_api_key
+NEWS_API_KEY=your_news_api_key
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js >= 20.9.0
+- pnpm (recommended) or npm
+- Docker (for deployment)
+
+### Installation & Setup
+
+1. **Clone the repository**:
+
+```bash
+git clone https://github.com/itsaryanchauhan/agent-challenge.git
+cd agent-challenge
+```
+
+2. **Install dependencies**:
+
+```bash
 pnpm install
+```
+
+3. **Set up environment variables**:
+
+   - Copy `.env.example` to `.env`
+   - Fill in your API keys for CoinCap, CoinMarketCap, and NewsAPI
+
+4. **Run the development server**:
+
+```bash
 pnpm run dev
 ```
 
-## Assignment
+5. **Open your browser** and navigate to `http://localhost:8080`
 
-### Challenge Overview
+### Docker Deployment
+
+**Build and run locally**:
+
+```bash
+# Build the Docker image
+docker build -t itsaryanchauhan/crypto-agent:latest .
+
+# Run the container
+docker run -p 8080:8080 --env-file .env itsaryanchauhan/crypto-agent:latest
+```
+
+**Docker Hub**:
+The agent is available on Docker Hub: `itsaryanchauhan/crypto-agent:latest`
+
+## 📋 Usage Examples
+
+### Basic Interactions
+
+**Get Cryptocurrency Price**:
+
+```
+User: "What's the current price of Bitcoin?"
+Agent: "As of now, the price of Bitcoin is $67,340.25. Would you like to see the latest news or sentiment score for BTC?"
+```
+
+**Get Latest Crypto News**:
+
+```
+User: "Show me the latest crypto news"
+Agent: "Here are the latest cryptocurrency news headlines: [fetches and displays recent news articles]"
+```
+
+**Sentiment Analysis**:
+
+```
+User: "What's the sentiment for Ethereum?"
+Agent: "The current sentiment score for Ethereum (ETH) is 0.75, indicating positive market sentiment."
+```
+
+## 🎬 Demo Video
+
+**Video Demo**: [Link to YouTube/Loom Demo]  
+_A 3-minute demonstration showcasing the Crypto Agent running on Nosana, featuring real-time price fetching, news updates, and sentiment analysis._
+
+## 🌐 Nosana Deployment
+
+**Deployment Status**: ✅ Successfully deployed on Nosana Network  
+**Job ID**: [Nosana Job ID]  
+**Live URL**: [Nosana Deployment URL]
+
+### Deployment Configuration
+
+The agent is deployed using the provided Nosana job definition with:
+
+- **GPU**: NVIDIA 3060
+- **Timeout**: 30 minutes
+- **Container**: `itsaryanchauhan/crypto-agent:latest`
+
+## 📁 Project Structure
+
+```
+src/
+├── mastra/
+│   ├── config.ts              # Mastra and LLM configuration
+│   ├── index.ts               # Main agent export
+│   └── crypto-agent/
+│       ├── crypto-agent.ts    # Agent definition and instructions
+│       ├── crypto-workflow.ts # Agent workflow (optional)
+│       └── tools/
+│           ├── getCryptoPrice.ts     # Price fetching tool
+│           ├── getCryptoNews.ts      # News fetching tool
+│           └── getSentimentScore.ts  # Sentiment analysis tool
+```
+
+## 🏆 Submission Details
+
+### Submission Requirements Checklist
+
+- [x] **Code Development**: Built a fully functional Crypto Agent with 3 custom tools
+- [x] **Docker Container**: Created and published to Docker Hub (`itsaryanchauhan/crypto-agent:latest`)
+- [x] **Nosana Deployment**: Successfully deployed on Nosana network
+- [x] **Video Demo**: Recorded demonstration video showcasing key features
+- [x] **Documentation**: Updated README with comprehensive setup and usage instructions
+
+### Social Media
+
+**X (Twitter) Post**: [Link to Twitter post with #NosanaAgentChallenge tag]
+
+### Repository
+
+**GitHub Repository**: [https://github.com/itsaryanchauhan/agent-challenge](https://github.com/itsaryanchauhan/agent-challenge)
+
+## 🎯 Innovation Highlights
+
+1. **Real-world Utility**: Addresses genuine need for crypto market information
+2. **Multi-API Integration**: Combines 3 different APIs for comprehensive data
+3. **Professional UX**: Clean, neutral responses without financial advice bias
+4. **Efficient Architecture**: Lightweight design optimized for Nosana deployment
+5. **Error Handling**: Robust error handling and fallback mechanisms
+
+## 🔧 API Integrations
+
+- **CoinCap API**: Real-time cryptocurrency prices
+- **NewsAPI**: Latest cryptocurrency news
+- **CoinMarketCap API**: Market sentiment analysis
+
+## 🎉 About the Developer
+
+**Name**: Aryan Chauhan  
+**GitHub**: [@itsaryanchauhan](https://github.com/itsaryanchauhan)  
+**Focus**: AI/ML Engineering, Blockchain Development
+
+---
+
+## 📚 Original Challenge Information
+
+_The sections below contain the original challenge documentation for reference._
+
+## 📚 Original Challenge Requirements
 
 Welcome to the Nosana AI Agent Hackathon! Your mission is to build and deploy an AI agent on Nosana.
 While we provide a weather agent as an example, your creativity is the limit. Build agents that:

@@ -26,6 +26,9 @@ importers:
       dotenv:
         specifier: ^16.5.0
         version: 16.5.0
+      just-color-it:
+        specifier: ^1.0.2
+        version: 1.0.2
       ollama-ai-provider:
         specifier: ^1.2.0
         version: 1.2.0(zod@3.25.67)
@@ -3253,6 +3256,10 @@ packages:
 
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
+
+  just-color-it@1.0.2:
+    resolution: {integrity: sha512-QgpsWxKv3a2+7A1+Plr/vZA6OjbLUDd8mNa8FjgacWV8ftUujhVrDaMojcscntB0DMQWuaTbt2hVVQTJY3DpUQ==}
+    engines: {node: '>=12.0.0'}
 
   kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
@@ -8632,6 +8639,8 @@ snapshots:
       universalify: 2.0.1
     optionalDependencies:
       graceful-fs: 4.2.11
+
+  just-color-it@1.0.2: {}
 
   kind-of@6.0.3: {}
 
