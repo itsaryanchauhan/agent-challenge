@@ -34,5 +34,5 @@ COPY . .
 # Override the default entrypoint
 ENTRYPOINT ["/bin/sh", "-c"]
 
-# Start Ollama service and pull the model, then run the app
-CMD ["ollama serve & sleep 5 && ollama pull ${MODEL_NAME_AT_ENDPOINT} && pnpm run dev"]
+# Start Ollama service and conditionally pull model (only for local usage), then run the app
+CMD ["ollama serve & sleep 5 && if [ \"$API_BASE_URL\" = \"http://127.0.0.1:11434/api\" ]; then ollama pull ${MODEL_NAME_AT_ENDPOINT}; fi && pnpm run dev"]
